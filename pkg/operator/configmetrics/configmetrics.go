@@ -56,6 +56,8 @@ func (m *configMetrics) Collect(ch chan<- prometheus.Metric) {
 				g = m.cloudProvider.WithLabelValues(string(status.Type), status.AWS.Region)
 			case status.GCP != nil:
 				g = m.cloudProvider.WithLabelValues(string(status.Type), status.GCP.Region)
+			case status.BareMetal != nil:
+				g = m.cloudProvider.WithLabelValues(string(status.Type), status.BareMetal.Region)
 			default:
 				g = m.cloudProvider.WithLabelValues(string(status.Type), "")
 			}
